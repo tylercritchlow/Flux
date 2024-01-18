@@ -1,6 +1,9 @@
-# flux
+<div style="text-align: center;" markdown="1">
+<h1>flux</h1>
+ <img src="assets/bitmap.png" style="width:300px;" alt="Flux Logo">
 
 **SCM made by me for small projects.**
+</div>
 
 ## Philosophy
 
