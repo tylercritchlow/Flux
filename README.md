@@ -1,24 +1,23 @@
-<div style="text-align: center;" markdown="1">
-<h1>flux</h1>
- <img src="assets/bitmap.png" style="width:300px;" alt="Flux Logo">
+<div align="center" markdown="1"> 
+ <img src="assets/bitmap.png" width="250" alt="Flux Logo">
+ <h1>Flux</h1>
 
-**SCM made by me for small projects.**
 </div>
 
-## Philosophy
-
-The idea is to have a simple SCM that can be used for small projects. It is not meant to be used for large projects, but it can be used for them. It is meant to be used for small projects that don't need a lot of features.
-
 ## Features
-
+- [ ] Inititalize Repo
+```
+ - [x] Create .flux directory
+ - [x] Create config file
+ - [ ] create branches directory
+```
 - [ ] Add files
 - [ ] Remove files
 - [ ] Commit files
 - [ ] Branches
 - [ ] Merge branches
 - [ ] View commit history
-- [ ] Resolve merge conflicts
-- [ ] Collaborate with others
+- [ ] Resolve merge conflicts wizard/helper
 - [ ] Push to remote
 - [ ] Pull from remote
 - [ ] Clone remote
