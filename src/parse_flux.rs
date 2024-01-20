@@ -1,14 +1,16 @@
-//logic to parse and mutate the flux directory, basically the brain of Flux. This is the first step in commits, checking out branches, and other operations.
-use std::fs;
+// logic to parse and mutate the flux directory, basically the brain of Flux. This is the first step in commits, checking out branches, and other operations.
+
+use std::{fs, io::Read};
 
 pub fn get_flux_branch(branch: &str) -> String {
-    let mut branch_path = (".flux/branches/{}", branch);
+    let mut branch_path = String::from(".flux/branches/{}");
     branch_path.push_str(branch);
     branch_path
 }
 
 pub fn get_flux_head(branch: &str) -> String {
-    let mut head_path = (".flux/branches/{}/{}-HEAD", branch, branch);
+    // This should get the file path to the commit hash file
+    let mut head_path = String::from(".flux/branches/{}/{}-HEAD");
     head_path.push_str(branch);
     head_path
 }
