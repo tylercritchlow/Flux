@@ -73,15 +73,15 @@ mod tests {
         assert_eq!(result, expected);
     }
 
-    // #[test]
-    // fn test_get_flux_head_hash() {
-    //     let branch = "main";
-    //     let cwd = "D:/RustProjects/flux";
-    //     // Assuming the file contains "abc123"
-    //     let expected = "abc123";
-    //     let result = get_flux_head_hash(branch, cwd);
-    //     assert_eq!(result, expected);
-    // }
+    #[test]
+    fn test_get_flux_head_hash() {
+        let branch = "main";
+        let cwd = "D:/RustProjects/flux";
+        // Assuming the file contains "abc123"
+        let expected = "abc123";
+        let result = get_flux_head_hash(branch, cwd);
+        assert_eq!(result, expected);
+    }
 
     #[test]
     fn test_get_flux_branch() {
