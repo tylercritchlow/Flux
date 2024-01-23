@@ -67,8 +67,8 @@ mod tests {
     #[test]
     fn test_get_flux_head() {
         let branch = "main";
-        let cwd = "D:/RustProjects/flux";
-        let expected = "D:/RustProjects/flux/.flux/branches/main/main-HEAD";
+        let cwd = "/home/tyler/RustProjects/flux";
+        let expected = "/home/tyler/RustProjects/flux/.flux/branches/main/main-HEAD";
         let result = get_flux_head(branch.to_string(), cwd.to_string());
         assert_eq!(result, expected);
     }
@@ -76,7 +76,7 @@ mod tests {
     #[test]
     fn test_get_flux_head_hash() {
         let branch = "main";
-        let cwd = "D:/RustProjects/flux";
+        let cwd = "/home/tyler/RustProjects/flux";
         // Assuming the file contains "abc123"
         let expected = "abc123";
         let result = get_flux_head_hash(branch, cwd);
@@ -86,8 +86,8 @@ mod tests {
     #[test]
     fn test_get_flux_branch() {
         let branch = "main";
-        let cwd = "D:/RustProjects/flux";
-        let expected = "D:/RustProjects/flux/.flux/branches/main";
+        let cwd = "/home/tyler/RustProjects/flux";
+        let expected = "/home/tyler/RustProjects/flux/.flux/branches/main";
         let result = get_flux_branch(branch, cwd);
         assert_eq!(result, expected);
     }
