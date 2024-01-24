@@ -1,7 +1,10 @@
 mod parse_flux;
+mod compression_and_decompression;
+
+use crate::compression_and_decompression::compress_single_file;
 
 use clap::App;
-use std::fs;
+use std::{fs, vec};
 use std::io::Write;
 
 fn main() {
@@ -13,7 +16,7 @@ fn main() {
             App::new("init")
                 .about("Initialize Flux")
                 .version("1.0")
-                .author("Your Name"),
+                .author("Tyler Critchlow"),
         )
         .get_matches();
 
@@ -58,6 +61,13 @@ fn main() {
         }
         _ => println!("Please provide a valid command. Use --help for more information."),
     }
+
+    compress_and_print("src/main.rs");
+}
+
+fn compress_and_print(file_path: &str) {
+    let compressed_contents = compress_single_file(file_path);
+    println!("{}", compressed_contents);
 }
 
 #[cfg(test)]
