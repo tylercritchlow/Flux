@@ -5,22 +5,31 @@ use flate2::write::GzEncoder;
 
 
 pub fn compress_files_added(files: Vec<Option<String>>) {
-
-    for file in files {
-        if let Some(file_path) = file {
-\           compress_single_file(&file.unwrap().as_str());
-            
+    for mut file in files {
+        if let Some(file_path) = file.take() {
+            compress_single_file(&file_path);
+            let mut file_compressed = compress_single_file(&file_path);
+            push_front(file_compressed.clone(), ("{}:", file_path));
+            // write the compressed file to a test.txt file
+            let mut test_file = File::create("test.txt").expect("Failed to create test.txt file.");
+            test_file.write_all(file_compressed.as_bytes()).expect("Failed to write to test.txt file.");
         }
     }
 }
 
-pub fn compress_single_file(file_path: &str) -> String {
+fn push_front(mut s: String, prefix: (&str, String)) -> String {
+    s.insert_str(0, prefix.0);
+    s.insert_str(prefix.0.len(), &prefix.1);
+    s
+}
+
+fn compress_single_file(file_path: &str) -> String {
     let mut encoder = GzEncoder::new(Vec::new(), Compression::default());
 
-    let mut file = File::open(file_path).expect("no file found");
-    let metadata = fs::metadata(file_path).expect("Unable to read matadata");
+    let mut file = File::open(file_path).expect("File not found");
+    let metadata = fs::metadata(file_path).expect("Unable to read metadata of file.");
     let mut buffer = vec![0; metadata.len() as usize]; 
-    file.read(&mut buffer).expect("buffer overflow");
+    file.read(&mut buffer).expect("Buffer overflow");
 
     encoder.write_all(&buffer).expect("Unable to write to buffer");
 
@@ -29,7 +38,7 @@ pub fn compress_single_file(file_path: &str) -> String {
     unsafe { String::from_utf8_unchecked(buffer) }
 }
 
-pub fn decompress_string(compressed_string: &str) -> String {
+fn decompress_string(compressed_string: &str) -> String {
     let mut decoder = GzDecoder::new(compressed_string.as_bytes());
     let mut decompressed = String::new();
     decoder.read_to_string(&mut decompressed).expect("Unable to decompress string");
