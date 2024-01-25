@@ -7,4 +7,4 @@ edition = "2021"
 
 [dependencies]
 clap = "3.2.25" # Old version, but it's the one that works with how I'm using it
-
+flate2 = "1.0.28"
