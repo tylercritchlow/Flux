@@ -1,13 +1,13 @@
-use std::{fs::{self, read_to_string, File}, io::{Read, Write}, path::Path, str::from_utf8_unchecked};
-use flate2::{Compress, Compression};
+use std::{fs::{self, File}, io::{Read, Write}};
+use flate2::{Compression};
 use flate2::read::GzDecoder;
 use flate2::write::GzEncoder;
 
-pub fn compress_files(files: Vec<Option<String>>) {
+pub fn compress_files(files: Vec<String>) {
     let mut files_compressed = String::new();
 
-    for mut file in files {
-        if let Some(file_path) = file.take() {
+    for file in files {
+        if let file_path = file {
             let mut file_compressed = compress_single_file(&file_path);
             // prepend the file path to the compressed data
             file_compressed = format!("\n{}:\n{}", file_path, file_compressed);
