@@ -61,7 +61,6 @@ fn main() {
         }
         _ => println!("Please provide a valid command. Use --help for more information."),
     }
-    println!("{:?}", compress_files_added(vec![Some("src/main.rs".to_string())]) );
 }
 
 #[cfg(test)]
