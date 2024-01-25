@@ -1,8 +1,12 @@
 <div align="center" markdown="1"> 
- <img src="assets/bitmap.png" width="250" alt="Flux Logo">
+ <img src="assets/logo.png" width="250" alt="Flux Logo">
  <h1>Flux</h1>
 
 </div>
+
+
+> [!NOTE]  
+> Flux is not a finished product at all. It is still in development and is not ready for use. I will post a github release when it is ready for use.
 
 Flux is a simple version control system that is easy to use and easy to understand. As a non-programmer friendly version control system, it is designed in a way to be easily traversed through the .flux directory. What that means is you can tell what is going on in the repository by looking at the .flux directory. 
 
