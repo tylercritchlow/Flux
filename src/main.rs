@@ -61,8 +61,8 @@ fn main() {
         }
         _ => println!("Please provide a valid command. Use --help for more information."),
     }
-    // compress_files(vec![Some("src/main.rs".to_string())]);
-    decompress_files(vec![Some("compressed.txt".to_string())]);
+    compress_files(vec![Some("src/main.rs".to_string()), Some("src/compression_and_decompression/mod.rs".to_string())]);
+    // decompress_files(vec![Some("compressed.txt".to_string())]);
 }
 
 #[cfg(test)]

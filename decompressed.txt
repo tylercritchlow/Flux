@@ -3,20 +3,17 @@ use flate2::{Compress, Compression};
 use flate2::read::GzDecoder;
 use flate2::write::GzEncoder;
 
-pub fn compress_files(files: Vec<Option<String>>) {
-    let mut files_compressed = String::new();
-
+pub fn compress_files(files: Vec<String>) {
     for mut file in files {
-        if let Some(file_path) = file.take() {
+        if let file_path = file {
             let mut file_compressed = compress_single_file(&file_path);
             // prepend the file path to the compressed data
-            file_compressed = format!("\n{}:\n{}", file_path, file_compressed);
-            files_compressed.push_str(&file_compressed);
+            // file_compressed = format!("{}:\n{}", file_path, file_compressed);
+            // write the compressed data to a test.txt file
+            let mut test_file = File::create("compressed.txt").expect("Failed to create test.txt file.");
+            test_file.write_all(file_compressed.as_bytes()).expect("Failed to write to test.txt file.");
         }
-        
     }
-    let mut test_file = File::create("compressed.txt").expect("Failed to create test.txt file.");
-    test_file.write_all(files_compressed.as_bytes()).expect("Failed to write to test.txt file.");
 }
 
 pub fn decompress_files(files: Vec<Option<String>>) {
