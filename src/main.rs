@@ -1,11 +1,11 @@
-mod parse_flux;
 mod compression_and_decompression;
+mod parse_flux;
 
 use crate::compression_and_decompression::*;
 
 use clap::App;
-use std::{fs, vec};
 use std::io::Write;
+use std::{fs, vec};
 
 fn main() {
     let matches = App::new("Flux SCM")
@@ -61,6 +61,8 @@ fn main() {
         }
         _ => println!("Please provide a valid command. Use --help for more information."),
     }
+    compress_files(vec![Some("src/main.rs".to_string())]);
+    decompress_files(vec![Some("compressed.txt".to_string())]);
 }
 
 #[cfg(test)]
