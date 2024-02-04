@@ -61,7 +61,7 @@ fn main() {
         }
         _ => println!("Please provide a valid command. Use --help for more information."),
     }
-    // compress_files(vec!["src/main.rs".to_string()]);
+    compress_files(vec!["src/main.rs".to_string(), "src/parse_flux.rs".to_string()]);
     decompress_and_write("compressed.txt");
 }
 

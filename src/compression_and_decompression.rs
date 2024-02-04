@@ -1,6 +1,7 @@
 use flate2::read::GzDecoder;
 use flate2::write::GzEncoder;
 use flate2::Compression;
+use std::fs::Metadata;
 use std::io::{BufRead, BufReader};
 use std::{
     fs::{self, File},
@@ -28,20 +29,27 @@ pub fn compress_files(files: Vec<String>) {
 pub fn decompress_and_write(commit_file: &str) {
     // read the commit file. it should be a string of the compressed data with a header that contains the file path
     // That looks like this: src/main.rs:\n[compressed data]
-    let mut commit_file = File::open(commit_file).expect("Failed to open commit file.");
-    let mut commit_file_contents = String::new();
-    commit_file
-        .read_to_string(&mut commit_file_contents)
-        .expect("Failed to read commit file.");
+    // let mut commit_file = File::open(commit_file).expect("Failed to open commit file.");
+    let metadata = fs::metadata(commit_file).expect("Failed to read metadata of commit file.");
+    let buffer: Vec<u8> = vec![0; metadata.len() as usize];
+    let buffer_clone = buffer.clone();
+
+    let commit_file_contents = unsafe { String::from_utf8_unchecked(buffer) };
 
     let lines_vec: Vec<&str> = commit_file_contents.split(":\n").collect();
 
     let binding = lines_vec.clone().join(""); // binding prevents the temporary value from being dropped
     let linesbinding = binding.split("\n").collect::<Vec<_>>();
-    let lines = linesbinding.chunks(2).map(|chunk| (chunk[0], chunk[1])).collect::<Vec<_>>();
-    println!("{:?}", lines[0].1);
+    // println!("{:?}", linesbinding);
+    println!("{:?}", linesbinding.len());
+    let lines = linesbinding
+        .chunks(2)
+        .map(|chunk| (chunk[0], chunk[1]))
+        .collect::<Vec<_>>();
+    println!("{:?}", lines[0]);
 
-
+    let decompressed = decompress_bytes(&buffer_clone);
+    println!("{}", decompressed);
 }
 
 fn compress_single_file(file_path: &str) -> String {
