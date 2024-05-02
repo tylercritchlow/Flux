@@ -37,39 +37,10 @@ Soon, I will create a remote repository hosting service for flux. It will be fre
 
 ## Installation
 
- **Debian/Ubuntu**
+**Linux**
+Snap:
 ```bash
-sudo apt install flux
-```
-
-**Arch Linux**
-```bash
-sudo pacman -S flux
-```
-
-**Fedora**
-```bash
-sudo dnf install flux
-```
-
-**Void Linux**
-```bash
-sudo xbps-install -S flux
-```
-
-**Gentoo**
-```bash
-sudo emerge flux
-```
-
-**FreeBSD**
-```bash
-sudo pkg install flux
-```
-
-**OpenSUSE**
-```bash
-sudo zypper install flux
+snap install flux
 ```
 
 **macOS**
@@ -80,8 +51,7 @@ brew install flux
 **Windows**
 ```bash
 winget install flux
-```
--->
+```-->
 
 ## Usage
 ```
@@ -112,3 +82,23 @@ For more information, visit:
 
 [Link to Flux documentation]
 ```
+
+## Contributing to Flux
+
+We welcome contributions from everyone. Before contributing, please read our [Code of Conduct](CODE_OF_CONDUCT.md). We expect everyone to follow the code of conduct anywhere in Flux's project's codebases, issue trackers, chatrooms, and mailing lists.
+
+### How to Contribute
+
+1. Fork the repository on GitHub
+2. Clone your fork to your local machine
+3. Create a new branch for your contribution
+4. Make your changes and commit them
+5. Push your changes to your fork
+6. Submit a pull request from your fork back to the main repository
+7. Wait for your pull request to be reviewed and merged
+
+For more details on how to contribute, please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+
+## License
+
+Flux is released under the MIT License. See the bundled [LICENSE](LICENSE.md) file for details.
